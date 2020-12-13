@@ -97,6 +97,17 @@ Use `:diffthis` when opening multiple files to run `:diffthis` on the first 4 fi
 
 Check `:help ctrlp-options` for other options.
 
+## New Feature 
+
+* Toggle Case Sensitive 
+
+	Make the search is case sensitive by set this option :
+	```vim
+	let g:ctrlp_case_sensitive = 1 
+	```
+	It can also be toggled dynamically by enter `<c-i>` when using with [my custom ctrlP](https://github.com/cheng3100/ctrlp.vim).
+	
+
 ## Installation
 Use your favorite method or check the homepage for a [quick installation guide][3].
 

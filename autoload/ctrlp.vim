@@ -792,7 +792,7 @@ fu! s:ForceUpdate()
 endf
 
 fu! s:BuildPrompt(upd)
-	let base = ( s:regexp ? 'r' : '>' ).( s:byfname() ? 'd' : '>' ).( g:ctrlp_case_sense ? 'c' : '>' ).'>'
+	let base = ( s:regexp ? 'r' : '>' ).( s:byfname() ? 'd' : '>' ).( g:ctrlp_case_sensitive ? 'c' : '>' ).'>'
 	let str = escape(s:getinput(), '\')
 	let lazy = str == '' || exists('s:force') || !has('autocmd') ? 0 : s:lazy
 	if a:upd && !lazy && ( s:matches || s:regexp || exists('s:did_exp')
@@ -1143,10 +1143,10 @@ fu! s:ToggleRegex()
 	cal s:PrtSwitcher()
 endf
 
-let g:ctrlp_case_sense=0
+let g:ctrlp_case_sensitive=0
 
 fu! s:ToggleCase()
-	let g:ctrlp_case_sense= !g:ctrlp_case_sense
+	let g:ctrlp_case_sensitive= !g:ctrlp_case_sensitive
 	cal s:PrtSwitcher()
 endf
 

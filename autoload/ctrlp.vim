@@ -137,6 +137,7 @@ let [s:lcmap, s:prtmaps] = ['nn <buffer> <silent>', {
 	\ 'AcceptSelection("v")': ['<c-v>', '<RightMouse>'],
 	\ 'ToggleFocus()':        ['<s-tab>'],
 	\ 'ToggleRegex()':        ['<c-r>'],
+	\ 'ToggleCase()':         ['<c-i>'],
 	\ 'ToggleByFname()':      ['<c-d>'],
 	\ 'ToggleType(1)':        ['<c-f>', '<c-up>'],
 	\ 'ToggleType(-1)':       ['<c-b>', '<c-down>'],
@@ -791,7 +792,7 @@ fu! s:ForceUpdate()
 endf
 
 fu! s:BuildPrompt(upd)
-	let base = ( s:regexp ? 'r' : '>' ).( s:byfname() ? 'd' : '>' ).'> '
+	let base = ( s:regexp ? 'r' : '>' ).( s:byfname() ? 'd' : '>' ).( g:ctrlp_case_sense ? 'c' : '>' ).'>'
 	let str = escape(s:getinput(), '\')
 	let lazy = str == '' || exists('s:force') || !has('autocmd') ? 0 : s:lazy
 	if a:upd && !lazy && ( s:matches || s:regexp || exists('s:did_exp')
@@ -1139,6 +1140,13 @@ endf
 
 fu! s:ToggleRegex()
 	let s:regexp = !s:regexp
+	cal s:PrtSwitcher()
+endf
+
+let g:ctrlp_case_sense=0
+
+fu! s:ToggleCase()
+	let g:ctrlp_case_sense= !g:ctrlp_case_sense
 	cal s:PrtSwitcher()
 endf
 
